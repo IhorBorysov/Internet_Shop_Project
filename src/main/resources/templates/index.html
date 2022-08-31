@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head  th:href="@{styles.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MVC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/828e41c488.js" crossorigin="anonymous"></script>
+    <style>
+        ::-webkit-scrollbar{
+            width: 15px;
+        }
+        ::-webkit-scrollbar-track{
+            background: #ffffff;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background: #232323;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header :: navbar"/>
+
+<div class="album py-5 bg-light" >
+    <div class="container-fluid" >
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4" >
+            <div class="col" th:each="product : ${products}">
+                <div class="card shadow-sm">
+                    <img height="250px" th:src="@{/imag/{image} (image=${product.image})}" alt="product"/>
+
+                    <div class="card-body">
+                        <h3 th:text="${product.name}"></h3>
+                        <p class="card-text" style="text-after-overflow: ellipsis" th:text="${product.description}"></p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a th:href="@{/product/{id}(id=${product.id})}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </a>
+                                <a th:href="@{/bucket/addProduct/{id}(id=${product.id})}" type="button" class="btn btn-sm btn-outline-success">
+                                    <i class="fa-solid fa-basket-shopping"></i>
+                                </a>
+                            </div>
+                            <span th:text="${product.price}" class="text-muted"> $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

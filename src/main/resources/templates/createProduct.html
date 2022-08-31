@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: navbarg">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CreateProduct</title>
+</head>
+<style>
+    ::-webkit-scrollbar{
+        width: 15px;
+    }
+    ::-webkit-scrollbar-track{
+        background: #ffffff;
+    }
+
+    ::-webkit-scrollbar-thumb{
+        background: #232323;
+    }
+</style>
+<body>
+<div th:replace="fragments/header :: navbar"/>
+
+<div style="width: 70%; margin: 0 auto">
+    <form action="/product/save" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name" class="form-label">Prodyct Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="name">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" style="height: 350px" placeholder="Description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price in $</label>
+            <input type="number" min="1" class="form-control" id="price" name="price" placeholder="Price">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" min="1" class="form-control" id="image" name="image">
+        </div>
+
+        <input type="submit" class="btn btn-primary">
+    </form>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
